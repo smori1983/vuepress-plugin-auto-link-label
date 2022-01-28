@@ -11,6 +11,16 @@ module.exports = {
           '/debug/',
         ],
       },
+      {
+        title: 'pages',
+        collapsable: false,
+        children: [
+          '/pages/page1.md',
+          '/pages/page2.md',
+          '/pages/page3.md',
+          '/pages/page4.md',
+        ],
+      },
     ],
   },
 
