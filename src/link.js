@@ -36,7 +36,7 @@ class Link {
             let page;
             if ((page = this._findPageForHref(pages, href))) {
               if (children[i + 1].content === this._marker) {
-                children[i + 1].content = page.title;
+                children[i + 1].content = page.title || page.path;
               }
             }
             i += 3;
