@@ -20,7 +20,7 @@ class Link {
    * @param {Object[]} pages
    * @param {Object[]} tokens
    */
-  rewriteTitle(pages, tokens) {
+  rewriteLabel(pages, tokens) {
     tokens.forEach((token) => {
       if (token.type === 'inline' && token.children.length > 0) {
         const children = token.children;

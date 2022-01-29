@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: example site
-tagline: vuepress-plugin-auto-link-title
+tagline: vuepress-plugin-auto-link-label
 actionText: Get Started →
 actionLink: /debug/
 features:
@@ -16,5 +16,5 @@ features:
 ::: slot footer
 MIT Licensed
 
-[smori1983/vuepress-plugin-auto-link-title](https://github.com/smori1983/vuepress-plugin-auto-link-title)
+[smori1983/vuepress-plugin-auto-link-label](https://github.com/smori1983/vuepress-plugin-auto-link-label)
 :::

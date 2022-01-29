@@ -1,4 +1,4 @@
-# vuepress-plugin-auto-link-title
+# vuepress-plugin-auto-link-label
 
 
 ## Option
@@ -11,7 +11,7 @@
 ```
 module.exports = {
   plugins: [
-    ['auto-link-title', {
+    ['auto-link-label', {
       marker: '!!!',
     }],
   ],

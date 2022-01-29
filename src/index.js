@@ -6,7 +6,7 @@ module.exports = (options, ctx) => {
   return {
     chainMarkdown(config) {
       config
-        .plugin('vuepress-plugin-auto-link-title')
+        .plugin('vuepress-plugin-auto-link-label')
         .use(require('./markdown-it-plugin')(ctx, { marker: marker }));
     }
   };

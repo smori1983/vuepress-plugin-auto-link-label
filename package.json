@@ -1,7 +1,7 @@
 {
-  "name": "vuepress-plugin-auto-link-title",
+  "name": "vuepress-plugin-auto-link-label",
   "version": "0.1.0",
-  "description": "VuePress plugin to replace link title.",
+  "description": "VuePress plugin to replace link label.",
   "main": "src/index.js",
   "scripts": {
     "dev": "vuepress dev --no-cache example",
@@ -20,9 +20,9 @@
     "vuepress-plugin",
     "markdown-it"
   ],
-  "homepage": "https://github.com/smori1983/vuepress-plugin-auto-link-title#readme",
+  "homepage": "https://github.com/smori1983/vuepress-plugin-auto-link-label#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smori1983/vuepress-plugin-auto-link-title.git"
+    "url": "git+https://github.com/smori1983/vuepress-plugin-auto-link-label.git"
   }
 }
