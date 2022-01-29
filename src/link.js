@@ -56,7 +56,7 @@ class Link {
       return this._found.get(href);
     }
 
-    for (let i = 0; i < pages.length; i++) {
+    for (let i = 0, len = pages.length; i < len; i++) {
       const page = pages[i]
 
       // Match patterns
