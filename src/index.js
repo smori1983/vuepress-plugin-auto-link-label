@@ -1,5 +1,7 @@
 module.exports = (options, ctx) => {
-  const marker = '!';
+  const {
+    marker = '!',
+  } = options;
 
   return {
     chainMarkdown(config) {

@@ -25,7 +25,9 @@ module.exports = {
   },
 
   plugins: [
-    [require('../../src')],
+    [require('../../src'), {
+      marker: '!',
+    }],
   ],
 
   markdown: {
