@@ -1,5 +1,7 @@
 # vuepress-plugin-auto-link-label
 
+Replaces Markdown link label (specified by '`marker`' option) with page title.
+
 
 ## Option
 
@@ -37,6 +39,6 @@ See: [!](/path1/page1.md).
 
 will be:
 
-```
-<p>See: <a href="/path1/page1.html">Page1</a>.</p>
+```html
+<p>See: <a href="/path1/page1.html">Page 1</a>.</p>
 ```
