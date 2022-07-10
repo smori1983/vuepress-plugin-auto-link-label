@@ -1,20 +1,16 @@
 ---
-home: true
-heroText: example site
-tagline: vuepress-plugin-auto-link-label
-actionText: Get Started →
-actionLink: /debug/
-features:
-- title: feature 1
-  details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-- title: feature 2
-  details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-- title: feature 3
-  details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+home: false
 ---
 
-::: slot footer
-MIT Licensed
+`.vuepress/config.js`
 
-[smori1983/vuepress-plugin-auto-link-label](https://github.com/smori1983/vuepress-plugin-auto-link-label)
-:::
+```js
+module.exports = {
+  ...
+  plugins: [
+    ['auto-link-label', {
+      marker: '!',
+    }],
+  ],
+};
+```
