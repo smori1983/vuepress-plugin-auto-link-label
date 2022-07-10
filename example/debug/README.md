@@ -1,6 +1,7 @@
 # debug
 
 - [!](/debug/)
+- [!](/debug/README.md)
 
 -----
 
