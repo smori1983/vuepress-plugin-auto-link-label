@@ -6,6 +6,7 @@
 -----
 
 - [!](/)
+- [!](/README.md)
 - [!](/pages/page1.md)
 - [!](/pages/page2.md)
 - [!](/pages/page3.md)
