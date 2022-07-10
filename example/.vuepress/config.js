@@ -3,6 +3,7 @@ module.exports = {
   head: [],
 
   themeConfig: {
+    search: false,
     sidebar: [
       {
         title: 'debug',
