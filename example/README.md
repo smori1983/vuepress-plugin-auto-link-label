@@ -1,5 +1,6 @@
 ---
 home: false
+title: TOP PAGE
 ---
 
 `.vuepress/config.js`
