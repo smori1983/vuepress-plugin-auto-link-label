@@ -33,16 +33,16 @@ class Link {
           if (
             children[i].type === 'link_open' &&
             children[i + 1].type === 'text' &&
-            children[i + 2].type === 'link_close'
+            children[i + 2].type === 'link_close' &&
+            children[i + 1].content === this._marker
           ) {
             const href = children[i].attrGet('href');
 
             let page;
             if ((page = this._findPageForHref(pages, href))) {
-              if (children[i + 1].content === this._marker) {
-                children[i + 1].content = page.title || page.path;
-              }
+              children[i + 1].content = page.title || page.path;
             }
+
             i += 3;
           }
         }
