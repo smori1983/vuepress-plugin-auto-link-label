@@ -1,3 +1,14 @@
+/**
+ * @typedef {import('vuepress-types').Context} Context
+ * @typedef {import('vuepress-types').PageOptions} PageOptions
+ * @typedef {import('vuepress-types').PluginOptionAPI} PluginOptionAPI
+ */
+
+/**
+ * @param {PageOptions} options
+ * @param {Context} ctx
+ * @return {PluginOptionAPI}
+ */
 module.exports = (options, ctx) => {
   const {
     marker = '!',

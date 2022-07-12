@@ -1,10 +1,14 @@
+/**
+ * @typedef {import('vuepress-types').Page} Page
+ */
+
 class Link {
   /**
    * @param {string} marker
    */
   constructor(marker) {
     /**
-     * @type {Map<string, Object|null>}
+     * @type {Map<string, Page|null>}
      * @private
      */
     this._found = new Map();
@@ -17,7 +21,7 @@ class Link {
   }
 
   /**
-   * @param {Object[]} pages
+   * @param {Page[]} pages
    * @param {Object[]} tokens
    */
   rewriteLabel(pages, tokens) {
@@ -47,7 +51,7 @@ class Link {
   }
 
   /**
-   * @param {Object[]} pages
+   * @param {Page[]} pages
    * @param {string} href
    * @private
    */
@@ -78,8 +82,8 @@ class Link {
 
   /**
    * @param {string} href
-   * @param {Object|null} page
-   * @returns {Object|null}
+   * @param {Page|null} page
+   * @returns {Page|null}
    * @private
    */
   _register(href, page) {
