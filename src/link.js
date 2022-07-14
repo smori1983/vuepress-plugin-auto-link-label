@@ -8,6 +8,18 @@ class Link {
    */
   constructor(marker) {
     /**
+     * @type {boolean}
+     * @private
+     */
+    this._applicationInitialized = false;
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this._pagesCollected = false;
+
+    /**
      * @type {Map<string, Page|null>}
      * @private
      */
@@ -21,10 +33,28 @@ class Link {
   }
 
   /**
+   * Supposed to be called when lifecycle ready() hook was executed.
+   *
+   * At that time all page data will be able to collect.
+   */
+  applicationInitialized() {
+    this._applicationInitialized = true;
+  }
+
+  /**
    * @param {Page[]} pages
    * @param {Object[]} tokens
    */
   rewriteLabel(pages, tokens) {
+    if (this._applicationInitialized === false) {
+      return;
+    }
+
+    if (this._pagesCollected === false) {
+      this._collectPages(pages);
+      this._pagesCollected = true;
+    }
+
     tokens.forEach((token) => {
       if (token.type === 'inline' && token.children.length > 0) {
         const children = token.children;
@@ -39,7 +69,7 @@ class Link {
             const href = children[i].attrGet('href');
 
             let page;
-            if ((page = this._findPageForHref(pages, href))) {
+            if ((page = this._findPageForHref(href))) {
               children[i + 1].content = page.title || page.path;
             }
 
@@ -52,44 +82,28 @@ class Link {
 
   /**
    * @param {Page[]} pages
-   * @param {string} href
    * @private
    */
-  _findPageForHref(pages, href) {
-    if (this._found.has(href)) {
-      return this._found.get(href);
-    }
-
-    for (let i = 0, len = pages.length; i < len; i++) {
-      const page = pages[i]
-
-      // Match patterns
-      //
-      // - href like '/path/': matches page.regularPath
-      // - href like '/path/page.md': matches '/' + page.relativePath
-
-      if (href === page.regularPath) {
-        return this._register(href, page);
-      }
-
-      if (href === ('/' + page.relativePath)) {
-        return this._register(href, page);
-      }
-    }
-
-    return this._register(href, null);
+  _collectPages(pages) {
+    // - href like '/path/' matches page.regularPath
+    // - href like '/path/page.md' matches '/' + page.relativePath
+    pages.forEach((page) => {
+      this._found.set(page.regularPath, page);
+      this._found.set('/' + page.relativePath, page);
+    });
   }
 
   /**
    * @param {string} href
-   * @param {Page|null} page
-   * @returns {Page|null}
+   * @return {Page|null}
    * @private
    */
-  _register(href, page) {
-    this._found.set(href, page);
+  _findPageForHref(href) {
+    if (this._found.has(href)) {
+      return this._found.get(href);
+    }
 
-    return page;
+    return null;
   }
 }
 
