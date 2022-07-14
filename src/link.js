@@ -28,8 +28,8 @@ class Link {
     // - href like '/path/' matches page.regularPath
     // - href like '/path/page.md' matches '/' + page.relativePath
     pages.forEach((page) => {
-      this._register(page.regularPath, page);
-      this._register('/' + page.relativePath, page);
+      this._found.set(page.regularPath, page);
+      this._found.set('/' + page.relativePath, page);
     });
 
     tokens.forEach((token) => {
@@ -68,18 +68,6 @@ class Link {
     }
 
     return null;
-  }
-
-  /**
-   * @param {string} href
-   * @param {Page|null} page
-   * @returns {Page|null}
-   * @private
-   */
-  _register(href, page) {
-    this._found.set(href, page);
-
-    return page;
   }
 }
 
