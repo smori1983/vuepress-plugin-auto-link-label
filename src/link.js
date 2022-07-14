@@ -25,6 +25,13 @@ class Link {
    * @param {Object[]} tokens
    */
   rewriteLabel(pages, tokens) {
+    // - href like '/path/' matches page.regularPath
+    // - href like '/path/page.md' matches '/' + page.relativePath
+    pages.forEach((page) => {
+      this._register(page.regularPath, page);
+      this._register('/' + page.relativePath, page);
+    });
+
     tokens.forEach((token) => {
       if (token.type === 'inline' && token.children.length > 0) {
         const children = token.children;
@@ -39,7 +46,7 @@ class Link {
             const href = children[i].attrGet('href');
 
             let page;
-            if ((page = this._findPageForHref(pages, href))) {
+            if ((page = this._findPageForHref(href))) {
               children[i + 1].content = page.title || page.path;
             }
 
@@ -51,33 +58,16 @@ class Link {
   }
 
   /**
-   * @param {Page[]} pages
    * @param {string} href
+   * @return {Page|null}
    * @private
    */
-  _findPageForHref(pages, href) {
+  _findPageForHref(href) {
     if (this._found.has(href)) {
       return this._found.get(href);
     }
 
-    for (let i = 0, len = pages.length; i < len; i++) {
-      const page = pages[i]
-
-      // Match patterns
-      //
-      // - href like '/path/': matches page.regularPath
-      // - href like '/path/page.md': matches '/' + page.relativePath
-
-      if (href === page.regularPath) {
-        return this._register(href, page);
-      }
-
-      if (href === ('/' + page.relativePath)) {
-        return this._register(href, page);
-      }
-    }
-
-    return this._register(href, null);
+    return null;
   }
 
   /**
