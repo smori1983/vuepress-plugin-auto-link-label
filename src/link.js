@@ -8,6 +8,18 @@ class Link {
    */
   constructor(marker) {
     /**
+     * @type {boolean}
+     * @private
+     */
+    this._applicationInitialized = false;
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this._pagesCollected = false;
+
+    /**
      * @type {Map<string, Page|null>}
      * @private
      */
@@ -21,16 +33,27 @@ class Link {
   }
 
   /**
+   * Supposed to be called when lifecycle ready() hook was executed.
+   *
+   * At that time all page data will be able to collect.
+   */
+  applicationInitialized() {
+    this._applicationInitialized = true;
+  }
+
+  /**
    * @param {Page[]} pages
    * @param {Object[]} tokens
    */
   rewriteLabel(pages, tokens) {
-    // - href like '/path/' matches page.regularPath
-    // - href like '/path/page.md' matches '/' + page.relativePath
-    pages.forEach((page) => {
-      this._found.set(page.regularPath, page);
-      this._found.set('/' + page.relativePath, page);
-    });
+    if (this._applicationInitialized === false) {
+      return;
+    }
+
+    if (this._pagesCollected === false) {
+      this._collectPages(pages);
+      this._pagesCollected = true;
+    }
 
     tokens.forEach((token) => {
       if (token.type === 'inline' && token.children.length > 0) {
@@ -54,6 +77,19 @@ class Link {
           }
         }
       }
+    });
+  }
+
+  /**
+   * @param {Page[]} pages
+   * @private
+   */
+  _collectPages(pages) {
+    // - href like '/path/' matches page.regularPath
+    // - href like '/path/page.md' matches '/' + page.relativePath
+    pages.forEach((page) => {
+      this._found.set(page.regularPath, page);
+      this._found.set('/' + page.relativePath, page);
     });
   }
 

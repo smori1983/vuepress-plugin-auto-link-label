@@ -1,9 +1,14 @@
-const Link = require('./link');
+/**
+ * @typedef {import('vuepress-types').Context} Context
+ * @typedef {import('./link')} Link
+ */
 
-module.exports = ((ctx, { marker }) => {
+/**
+ * @type {function(Context, Link): function(*): void}
+ */
+module.exports = ((ctx, link) => {
   return (md) => {
     md.core.ruler.push('vuepress_plugin_auto_link_label', ((state) => {
-      const link = new Link(marker);
       link.rewriteLabel(ctx.pages, state.tokens);
     }));
   };
