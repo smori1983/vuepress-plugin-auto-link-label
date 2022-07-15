@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'example site',
+  title: 'vuepress-plugin-auto-link-label',
   head: [],
 
   themeConfig: {
