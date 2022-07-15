@@ -23,7 +23,7 @@ class Link {
      * @type {Map<string, string>}
      * @private
      */
-    this._found = new Map();
+    this._pageLabels = new Map();
 
     /**
      * @type {string}
@@ -89,8 +89,8 @@ class Link {
     // - href like '/path/page.md' matches '/' + page.relativePath
     pages.forEach((page) => {
       const label = page.title || page.path;
-      this._found.set(page.regularPath, label);
-      this._found.set('/' + page.relativePath, label);
+      this._pageLabels.set(page.regularPath, label);
+      this._pageLabels.set('/' + page.relativePath, label);
     });
   }
 
@@ -100,8 +100,8 @@ class Link {
    * @private
    */
   _findLabel(href) {
-    if (this._found.has(href)) {
-      return this._found.get(href);
+    if (this._pageLabels.has(href)) {
+      return this._pageLabels.get(href);
     }
 
     return null;
