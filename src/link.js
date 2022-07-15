@@ -20,10 +20,10 @@ class Link {
     this._pagesCollected = false;
 
     /**
-     * @type {Map<string, Page|null>}
+     * @type {Map<string, string>}
      * @private
      */
-    this._found = new Map();
+    this._pageLabels = new Map();
 
     /**
      * @type {string}
@@ -68,9 +68,9 @@ class Link {
           ) {
             const href = children[i].attrGet('href');
 
-            let page;
-            if ((page = this._findPageForHref(href))) {
-              children[i + 1].content = page.title || page.path;
+            let label;
+            if ((label = this._findLabel(href))) {
+              children[i + 1].content = label;
             }
 
             i += 3;
@@ -88,19 +88,20 @@ class Link {
     // - href like '/path/' matches page.regularPath
     // - href like '/path/page.md' matches '/' + page.relativePath
     pages.forEach((page) => {
-      this._found.set(page.regularPath, page);
-      this._found.set('/' + page.relativePath, page);
+      const label = page.title || page.path;
+      this._pageLabels.set(page.regularPath, label);
+      this._pageLabels.set('/' + page.relativePath, label);
     });
   }
 
   /**
    * @param {string} href
-   * @return {Page|null}
+   * @return {string|null}
    * @private
    */
-  _findPageForHref(href) {
-    if (this._found.has(href)) {
-      return this._found.get(href);
+  _findLabel(href) {
+    if (this._pageLabels.has(href)) {
+      return this._pageLabels.get(href);
     }
 
     return null;
