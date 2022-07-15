@@ -25,6 +25,11 @@ module.exports = {
 ```
 
 
+## Precautions for use
+
+- Markdown link should be the site root-relative path.
+
+
 ## Example
 
 `/path1/page1.md`
