@@ -10,6 +10,8 @@ Replaces Markdown link label (specified by '`marker`' option) with page title.
 
 ## Configuration
 
+`.vuepress/config.js`
+
 ```
 module.exports = {
   plugins: [
@@ -37,7 +39,7 @@ module.exports = {
 See: [!](/path1/page1.md).
 ```
 
-will be:
+will be (`!` is converted to `Page 1`):
 
 ```html
 <p>See: <a href="/path1/page1.html">Page 1</a>.</p>
