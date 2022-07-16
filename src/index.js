@@ -1,13 +1,12 @@
 /**
  * @typedef {import('vuepress-types').Context} Context
- * @typedef {import('vuepress-types').PageOptions} PageOptions
  * @typedef {import('vuepress-types').PluginOptionAPI} PluginOptionAPI
  */
 
 const Link = require('./link');
 
 /**
- * @param {PageOptions} options
+ * @param {Object} options
  * @param {Context} ctx
  * @return {PluginOptionAPI}
  */
