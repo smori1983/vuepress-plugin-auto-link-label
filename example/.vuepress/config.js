@@ -4,6 +4,7 @@ module.exports = {
 
   themeConfig: {
     search: false,
+    sidebarDepth: 0,
     nav: [
       { text: 'npm', link: 'https://www.npmjs.com/package/vuepress-plugin-auto-link-label' },
     ],

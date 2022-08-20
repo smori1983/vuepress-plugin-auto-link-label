@@ -16,7 +16,9 @@ module.exports = {
 };
 ```
 
-::: details Source
+
+## Source
+
 ````
 ---
 home: false
@@ -36,4 +38,3 @@ module.exports = {
 };
 ```
 ````
-:::
