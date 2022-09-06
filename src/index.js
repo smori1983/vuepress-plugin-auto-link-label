@@ -21,7 +21,7 @@ module.exports = (options, ctx) => {
     chainMarkdown(config) {
       config
         .plugin('vuepress-plugin-auto-link-label')
-        .use(require('./markdown-it-plugin')(ctx, link));
+        .use(require('./markdown-it-plugin')(ctx.pages, link));
     },
     async ready() {
       link.applicationInitialized();
