@@ -2,8 +2,6 @@
 
 Replaces Markdown link label (specified by '`marker`' option) with page title.
 
-Visit [online demo](https://vp-auto-link-label.herokuapp.com/)
-
 
 ## Option
 
