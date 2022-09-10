@@ -11,10 +11,22 @@ const pages = [
   },
 ];
 
-const link = new Link('!');
-link.applicationInitialized();
+// Pattern 1
 
-const md = new MarkdownIt();
-md.use(require('../src/markdown-it-plugin')(pages, link));
+const link1 = new Link('!');
+link1.applicationInitialized();
 
-testGen(path.resolve(__dirname, 'fixtures'), {header: true}, md);
+const md1 = new MarkdownIt();
+md1.use(require('../src/markdown-it-plugin')(pages, link1));
+
+testGen(path.resolve(__dirname, 'fixtures1'), {header: true}, md1);
+
+// Pattern 2
+
+const link2 = new Link('@');
+link2.applicationInitialized();
+
+const md2 = new MarkdownIt();
+md2.use(require('../src/markdown-it-plugin')(pages, link2));
+
+testGen(path.resolve(__dirname, 'fixtures2'), {header: true}, md2);
